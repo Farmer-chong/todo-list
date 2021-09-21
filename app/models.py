@@ -14,3 +14,6 @@ class TodoList(db.Model):
     task = sa.Column(sa.String(255))
     completed = sa.Column(sa.Boolean, default=False)
     
+    @staticmethod
+    def get_tasks():
+        return TodoList.query.all()

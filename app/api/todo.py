@@ -6,8 +6,11 @@
     :date: 2021/09/21 12:55:13
 '''
 
+from app.schemas.output import TodoListOutSchema
+from app.models import TodoList
+from app.schemas.input import TodoListInSchema
 from app.utils import make_resp
-from apiflask import APIBlueprint
+from apiflask import APIBlueprint, output, input
 from flask.views import MethodView
 
 todo_bp = APIBlueprint('todo', __name__)
@@ -16,15 +19,18 @@ todo_bp = APIBlueprint('todo', __name__)
 @todo_bp.route("/")
 class TodoViews(MethodView):
 
+    @output(TodoListOutSchema(many=True))
     def get(self):
-        return make_resp(message="get")
+        todos = TodoList.get_tasks()
+        print(todos)
+        return make_resp(data=todos)
 
-    def post(self):
-        return make_resp(message="post")
+    @input(TodoListInSchema)
+    @output(TodoListOutSchema)
+    def put(self, todo_item):
+        return make_resp(data=todo_item)
 
-    def put(self):
-        return make_resp(message="put")
-
-    def patch(self):
-        return make_resp(message="patch")
+    @input(TodoListInSchema)
+    def patch(self, todo_item):
+        return make_resp(data=todo_item)
 

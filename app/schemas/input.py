@@ -6,8 +6,14 @@
     :date: 2021/09/21 15:53:44
 '''
 from apiflask import Schema
-from apiflask.fields import String, Boolean
+from apiflask.fields import String, Boolean, Integer
+from marshmallow import schema
 
-class TodoListSchema(Schema):
+class TodoListInSchema(Schema):
+    id = Integer()
     task = String(metadata={'example': 'This is a task description example.'})
     completed = Boolean(metadata={'example': False})
+
+# class ChangeTodoStatus(schema):
+#     id = Integer(default=-1)
+#     completed = Boolean(metadata={'example': False})
