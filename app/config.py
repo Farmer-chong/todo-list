@@ -21,7 +21,6 @@ else:
 
 # 基本配置
 class BaseConfig(object):
-    # 鉴权加密密钥（cookie）
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev key')
     # ORM框架配置
     SQLALCHEMY_TRACK_MODIFICATIONS = False

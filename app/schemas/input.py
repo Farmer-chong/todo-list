@@ -10,9 +10,11 @@ from apiflask.fields import String, Boolean, Integer
 from marshmallow import schema
 
 class TodoListInSchema(Schema):
-    id = Integer()
     task = String(metadata={'example': 'This is a task description example.'})
     completed = Boolean(metadata={'example': False})
+
+class TodoListUpdateSchema(TodoListInSchema):
+    id = Integer()
 
 # class ChangeTodoStatus(schema):
 #     id = Integer(default=-1)
