@@ -68,6 +68,8 @@ def register_commands(app: APIFlask):
     @click.option('--count', default=5, help='Quantity of messages, default is 20.')
     def fakedb(count):
         from faker import Faker
+        from datetime import datetime
+        print(datetime.now())
         db.drop_all()
         db.create_all()
         fake = Faker()

@@ -22,6 +22,7 @@ class TodoViews(MethodView):
     @output(TodoListOutSchema(many=True))
     def get(self):
         todos = TodoList.get_tasks()
+        
         return make_resp(data=todos)
 
     @input(TodoListInSchema)
@@ -30,7 +31,6 @@ class TodoViews(MethodView):
         print(item)
         todo = TodoList(**item)
         status = todo.save_task()
-        # test
         if not status:
             abort(400, message="出了点小问题")
         return make_resp(data=todo)

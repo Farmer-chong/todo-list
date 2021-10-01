@@ -7,7 +7,6 @@
 '''
 from apiflask import Schema
 from apiflask.fields import String, Boolean, Integer
-from marshmallow import schema
 
 class TodoListInSchema(Schema):
     task = String(metadata={'example': 'This is a task description example.'})
